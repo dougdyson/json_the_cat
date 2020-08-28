@@ -18,14 +18,15 @@ const fetchBreedDescription = function(breedName, cb) {
     const data = JSON.parse(body);
 
     if (error) {
-      cb(error);
+      cb(error, null);
       return;
     } else {
       if (data[0] === undefined) {
-        cb('Breed not found. Try again.');
+        cb('Breed not found. Try again.', null);
       } else {
-        const desc = data[0].description;
-        cb(desc);
+        let desc = data[0].description;
+        desc = desc.trim()
+        cb(null, desc);
       }
     }
   });
