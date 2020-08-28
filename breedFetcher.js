@@ -25,7 +25,7 @@ const fetchBreedDescription = function(breedName, cb) {
         cb('Breed not found. Try again.', null);
       } else {
         let desc = data[0].description;
-        desc = desc.trim()
+        desc = desc.trim();
         cb(null, desc);
       }
     }
