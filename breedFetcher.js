@@ -9,18 +9,24 @@ const request = require('request');
 
 const fetchBreedDescription = function(breedName, cb){
 
-  let urlToGet = 'https://api.thecatapi.com/v1/breeds/search?q=' + breedName;
+  const urlToGet = 'https://api.thecatapi.com/v1/breeds/search?q=' + breedName;
+
+  //console.log('Requesting info:' ,urlToGet);
   
   request(urlToGet, (error, response, body) => {
-
+    
     const data = JSON.parse(body);
 
     if(error){
       cb(error);
       return;
     } else {
-      desc = data[0].description;
-      cb(desc);
+      if (data[0] === undefined) {
+        cb('Breed not found. Try again.');
+      } else {
+        const desc = data[0].description;
+        cb(desc);
+      }
     }
   });
   return;
