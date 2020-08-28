@@ -7,7 +7,7 @@ and print out a short description of that breed.
 
 const request = require('request');
 
-const fetchBreedDescription = function(breedName, cb){
+const fetchBreedDescription = function(breedName, cb) {
 
   const urlToGet = 'https://api.thecatapi.com/v1/breeds/search?q=' + breedName;
 
@@ -17,7 +17,7 @@ const fetchBreedDescription = function(breedName, cb){
     
     const data = JSON.parse(body);
 
-    if(error){
+    if (error) {
       cb(error);
       return;
     } else {
